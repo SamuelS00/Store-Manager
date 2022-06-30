@@ -8,4 +8,4 @@ const validateId = async (id) => {
   if (!productById) throw notFound('Product not found');
 };
 
-module.exports = validateId;
+module.exports = { validateId };
