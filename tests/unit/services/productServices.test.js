@@ -6,18 +6,18 @@ const ProductModels = require('../../../models/productModels');
 
 const { mockProductsGetAll, mockProductGetById } = require('../mocks/mocksProducts');
 
-describe('( service layer )', () => {
+describe.only('( service layer )', () => {
   describe('#method getAll', () => {
-    before(async () => {
-      const query = mockProductsGetAll;
-      sinon.stub(ProductModels, 'getAll').resolves(query);
-    });
-
-    after(async () => {
-      ProductModels.getAll.restore();
-    });
-
     describe('when all products are returned', () => {
+      before(async () => {
+        const query = mockProductsGetAll;
+        sinon.stub(ProductModels, 'getAll').resolves(query);
+      });
+
+      after(async () => {
+        ProductModels.getAll.restore();
+      });
+
       it('tests if the return is an object', async () => {
         const response = await ProductServices.getAll();
         expect(response[0]).to.be.a('object');
@@ -36,16 +36,16 @@ describe('( service layer )', () => {
   });
 
   describe('#method getById', () => {
-    before(async () => {
-      const query = mockProductGetById;
-      sinon.stub(ProductModels, 'getById').resolves(query);
-    });
-
-    after(async () => {
-      ProductModels.getById.restore();
-    });
-
     describe('when only products by id are returned', () => {
+      before(async () => {
+        const query = mockProductGetById;
+        sinon.stub(ProductModels, 'getById').resolves(query);
+      });
+
+      after(async () => {
+        ProductModels.getById.restore();
+      });
+
       it('tests if the return is an object', async () => {
         const response = await ProductServices.getById(3);
         expect(response[0]).to.be.a('object');
