@@ -4,7 +4,7 @@ const { expect } = require('chai');
 const connection = require('../../../models/connection');
 const ProductModel = require('../../../models/productModels');
 
-const { mockProductsGetAll, mockProductGetById } = require('../mocks/modelsMocks');
+const { mockProductsGetAll, mockProductGetById } = require('../mocks/mocksProducts');
 
 describe('( model layer )', () => {
   describe('#method getAll', () => {
