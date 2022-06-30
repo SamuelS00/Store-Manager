@@ -1,5 +1,5 @@
 const ProductModel = require('../models/productModels');
-const { validateId } = require('../helpers/validateId');
+const { validateId, validateName } = require('../helpers/productValidations');
 
 const getAll = async () => {
   const products = await ProductModel.getAll();
@@ -14,8 +14,10 @@ const getById = async (id) => {
 };
 
 const create = async (name) => {
-  const newProduct = await ProductModel.create(name);
-  return newProduct;
+  await validateName(name);
+
+  // const newProduct = await ProductModel.create(name);
+  // return newProduct;
 };
 
 module.exports = { getAll, getById, create };
