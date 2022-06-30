@@ -14,4 +14,11 @@ const getById = async (req, res, _next) => {
   res.status(httpsStatusCode.OK).json(product);
 };
 
-module.exports = { getAll, getById };
+const create = async (req, res, _next) => {
+  const { name } = req.body;
+  const newProduct = await ProductService.create(name);
+
+  res.status(httpsStatusCode.CREATED).json(newProduct);
+};
+
+module.exports = { getAll, getById, create };
