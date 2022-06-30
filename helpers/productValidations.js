@@ -20,10 +20,15 @@ const productSchema = Joi.object({
 
 const validateName = async (name) => {
   const { error } = productSchema.validate({ name });
-  const { details: [{ type }] } = error;
+  
+  if (error) {
+    const {
+      details: [{ type }],
+    } = error;
 
-  if (joiTypeError.TYPE_ANY_REQUIRED === type) throw badRequest(error.message);
-  if (joiTypeError.TYPE_STRING_MIN === type) throw unprocessableEntity(error.message);
+    if (joiTypeError.TYPE_ANY_REQUIRED === type) throw badRequest(error.message);
+    if (joiTypeError.TYPE_STRING_MIN === type) throw unprocessableEntity(error.message);
+  }
 };
 
 module.exports = { validateId, validateName };
