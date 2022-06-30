@@ -1,6 +1,5 @@
 const ProductModel = require('../models/productModels');
 const validateId = require('../helpers/validateId');
-const notFound = require('../errors/notFound');
 
 const getAll = async () => {
   const products = await ProductModel.getAll();
