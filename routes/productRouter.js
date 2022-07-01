@@ -2,12 +2,12 @@ const express = require('express');
 const rescue = require('express-rescue');
 const ProductController = require('../controllers/productControllers');
 
-const router = express.Router();
+const productRouter = express.Router();
 
-router.get('/', rescue(ProductController.getAll));
+productRouter.get('/', rescue(ProductController.getAll));
 
-router.get('/:id', rescue(ProductController.getById));
+productRouter.get('/:id', rescue(ProductController.getById));
 
-router.post('/', rescue(ProductController.create));
+productRouter.post('/', rescue(ProductController.create));
 
-module.exports = router;
+module.exports = productRouter;
