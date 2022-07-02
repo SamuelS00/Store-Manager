@@ -1,6 +1,11 @@
 const SaleModels = require('../models/saleModels');
 const { validateSale } = require('../helpers/saleValidations');
 
+const getAll = async () => {
+  const sales = await SaleModels.getAll();
+  return sales;
+};
+
 const create = async (sales) => {
   await Promise.all(sales.map((s) => validateSale(s)));
 
@@ -8,4 +13,4 @@ const create = async (sales) => {
   return newSales;
 };
 
-module.exports = { create };
+module.exports = { create, getAll };
