@@ -29,4 +29,11 @@ const update = async (req, res, _next) => {
   res.status(httpsStatusCode.OK).json(updatedProduct);
 };
 
-module.exports = { getAll, getById, create, update };
+const remove = async (req, res, _next) => {
+  const { id } = req.params;
+  await ProductService.remove(id);
+
+  res.status(httpsStatusCode.NO_CONTENT).end();
+};
+
+module.exports = { getAll, getById, create, update, remove };
