@@ -6,6 +6,8 @@ const saleRouter = express.Router();
 
 saleRouter.get('/', rescue(saleController.getAll));
 
+saleRouter.get('/:id', rescue(saleController.getById));
+
 saleRouter.post('/', rescue(saleController.create));
 
 module.exports = saleRouter;
