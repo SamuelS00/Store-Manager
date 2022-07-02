@@ -20,4 +20,12 @@ const create = async (name) => {
   return newProduct;
 };
 
-module.exports = { getAll, getById, create };
+const update = async (id, name) => {
+  await validateId(id);
+  await validateName(name);
+
+  const updatedProduct = await ProductModel.update(id, name);
+  return updatedProduct;
+};
+
+module.exports = { getAll, getById, create, update };
