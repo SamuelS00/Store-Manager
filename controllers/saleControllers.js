@@ -11,7 +11,7 @@ const getById = async (req, res, _next) => {
   const { id } = req.params;
   const sale = await SaleService.getById(id);
 
-  res.status(httpsStatusCode.ACCEPTED).json(sale);
+  res.status(httpsStatusCode.OK).json(sale);
 };
 
 const create = async (req, res, _next) => {
