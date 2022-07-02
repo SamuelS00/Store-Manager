@@ -20,9 +20,15 @@ const getById = async (id) => {
     WHERE sp.sale_id = ? 
     ORDER BY sp.sale_id, sp.product_id ASC`;
   
-  const [sale] = await connection.execute(query, [id]);
+  const [result] = await connection.execute(query, [id]);
 
-  return sale;
+  const sales = result.map((sale) => {
+    const PRODUCT_ID = 'productId';
+    delete Object.assign(sale, { [PRODUCT_ID]: sale.product_id }).product_id;
+    return sale;
+  });
+
+  return sales;
 };
 
 const createSale = async () => {
