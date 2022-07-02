@@ -67,4 +67,10 @@ const create = async (sale) => {
   };
 };
 
-module.exports = { create, getAll, getById };
+const remove = async (id) => {
+  const query = 'DELETE FROM sales WHERE id = ?';
+
+  await connection.execute(query, [id]);
+};
+
+module.exports = { create, getAll, getById, remove };
