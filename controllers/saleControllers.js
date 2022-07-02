@@ -21,4 +21,11 @@ const create = async (req, res, _next) => {
   res.status(httpsStatusCode.CREATED).json(newSale);
 };
 
-module.exports = { create, getAll, getById };
+const remove = async (req, res, _next) => {
+  const { id } = req.params;
+  await SaleService.remove(id);
+
+  res.status(httpsStatusCode.NO_CONTENT).end();
+};
+
+module.exports = { create, getAll, getById, remove };
