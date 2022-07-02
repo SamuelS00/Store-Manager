@@ -68,7 +68,7 @@ const create = async (sale) => {
 };
 
 const remove = async (id) => {
-  const query = 'DELETE FROM sales WHERE id = ?';
+  const query = 'DELETE FROM StoreManager.sales WHERE id = ?';
 
   await connection.execute(query, [id]);
 };
