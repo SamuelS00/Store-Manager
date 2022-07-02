@@ -6,7 +6,7 @@ const ProductModels = require('../../../models/productModels');
 
 const { mockProductsGetAll, mockProductGetById } = require('../mocks/mocksProducts');
 
-describe('( service layer )', () => {
+describe('( service layer - product)', () => {
   describe('#method getAll', () => {
     describe('when all products are returned', () => {
       before(async () => {

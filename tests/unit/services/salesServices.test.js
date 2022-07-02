@@ -6,7 +6,7 @@ const SaleModels = require('../../../models/saleModels');
 
 const { mockSalesGetAll, mockSaleGetById } = require('../mocks/mocksSales');
 
-describe('( service layer )', () => {
+describe('( service layer - sale )', () => {
   describe('#method getAll', () => {
     describe('when all sales are returned', () => {
       before(async () => {

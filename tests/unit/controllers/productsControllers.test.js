@@ -8,7 +8,7 @@ const { mockProductsGetAll, mockProductGetById } = require('../mocks/mocksProduc
 
 const httpsStatusCode = require('../../../helpers/httpStatusCode');
 
-describe('( controller layer )', () => {
+describe('( controller layer - product )', () => {
   describe('#method getAll', () => {
     describe('when all products are returned', () => {
       const req = {};
