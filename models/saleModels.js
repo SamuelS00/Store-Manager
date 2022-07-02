@@ -7,23 +7,21 @@ const createSale = async () => {
   return insertId;
 };
 
-const registerSale = async ({ productId, quantity }) => {
+const create = async (sale) => {
   const insertId = await createSale();
+
   const querySalesProduct = (
     'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?)'
   );
 
-  await connection.execute(querySalesProduct, [insertId, productId, quantity]);
-  
-  return { insertId, productId, quantity };
-};
-
-const create = async (products) => {
-  const newSale = await Promise.all(products.map((s) => registerSale(s)));
+  await Promise.all(
+    sale.map((s) =>
+      connection.execute(querySalesProduct, [insertId, s.productId, s.quantity])),
+  );
 
   return {
-    id: newSale[0].insertId,
-    itemsSold: newSale.map((s) => ({
+    id: insertId,
+    itemsSold: sale.map((s) => ({
       productId: s.productId,
       quantity: s.quantity,
     })),
