@@ -6,6 +6,11 @@ const getAll = async () => {
   return sales;
 };
 
+const getById = async (id) => {
+  const sale = await SaleModels.getById(id);
+  return sale;
+};
+
 const create = async (sales) => {
   await Promise.all(sales.map((s) => validateSale(s)));
 
@@ -13,4 +18,4 @@ const create = async (sales) => {
   return newSales;
 };
 
-module.exports = { create, getAll };
+module.exports = { create, getAll, getById };
