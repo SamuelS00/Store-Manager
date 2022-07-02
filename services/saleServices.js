@@ -7,8 +7,9 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
+  await validateSaleId(id);
+
   const sale = await SaleModels.getById(id);
-  validateSaleId(sale);
   return sale;
 };
 

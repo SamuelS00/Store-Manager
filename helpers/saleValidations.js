@@ -1,5 +1,7 @@
 const Joi = require('joi');
 
+const SalesModels = require('../models/saleModels');
+
 const badRequest = require('../errors/badRequest');
 const notFound = require('../errors/notFound');
 const unprocessableEntity = require('../errors/unprocessableEntity');
@@ -27,8 +29,12 @@ const validateSale = async ({ productId, quantity }) => {
   await validateId(productId);
 };
 
-const validateSaleId = (sale) => {
-  if (!sale.length) throw notFound('Sale not found');
+const validateSaleId = async (id) => {
+  const sales = await SalesModels.getAll();
+
+  const isValid = sales.find((s) => s.saleId === +id);
+
+  if (!isValid) throw notFound('Sale not found');
 };
 
 module.exports = { validateSale, validateSaleId };
