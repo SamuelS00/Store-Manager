@@ -4,11 +4,25 @@ const getAll = async () => {
   const query = `
     SELECT sp.sale_id, s.date, sp.product_id, sp.quantity FROM sales AS s
     INNER JOIN sales_products AS sp
-    ON s.id = sp.sale_id;`;
+    ON s.id = sp.sale_id
+    ORDER BY sp.sale_id, sp.product_id ASC`;
   
   const [sales] = await connection.execute(query);
 
   return sales;
+};
+
+const getById = async (id) => {
+  const query = `
+    SELECT sp.sale_id, s.date, sp.product_id, sp.quantity FROM sales AS s
+    INNER JOIN sales_products AS sp
+    ON s.id = sp.sale_id
+    WHERE sp.sale_id = ? 
+    ORDER BY sp.sale_id, sp.product_id ASC`;
+  
+  const [sale] = await connection.execute(query, [id]);
+
+  return sale;
 };
 
 const createSale = async () => {
@@ -39,4 +53,4 @@ const create = async (sale) => {
   };
 };
 
-module.exports = { create, getAll };
+module.exports = { create, getAll, getById };
