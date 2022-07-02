@@ -1,5 +1,5 @@
 const SaleModels = require('../models/saleModels');
-const { validateSale } = require('../helpers/saleValidations');
+const { validateSale, validateSaleId } = require('../helpers/saleValidations');
 
 const getAll = async () => {
   const sales = await SaleModels.getAll();
@@ -8,6 +8,7 @@ const getAll = async () => {
 
 const getById = async (id) => {
   const sale = await SaleModels.getById(id);
+  validateSaleId(sale);
   return sale;
 };
 
