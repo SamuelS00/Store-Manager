@@ -20,4 +20,10 @@ const create = async (sales) => {
   return newSales;
 };
 
-module.exports = { create, getAll, getById };
+const remove = async (id) => {
+  await validateSaleId(id);
+
+  await SaleModels.remove(id);
+};
+
+module.exports = { create, getAll, getById, remove };
