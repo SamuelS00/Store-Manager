@@ -7,7 +7,15 @@ const getAll = async () => {
     ON s.id = sp.sale_id
     ORDER BY sp.sale_id, sp.product_id ASC`;
   
-  const [sales] = await connection.execute(query);
+  const [result] = await connection.execute(query);
+
+  const sales = result.map((sale) => {
+    const SALE_ID = 'saleId';
+    const PRODUCT_ID = 'productId';
+    delete Object.assign(sale, { [SALE_ID]: sale.sale_id }).sale_id;
+    delete Object.assign(sale, { [PRODUCT_ID]: sale.product_id }).product_id;
+    return sale;
+  });
 
   return sales;
 };
