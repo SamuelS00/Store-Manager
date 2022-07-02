@@ -28,4 +28,9 @@ const update = async (id, name) => {
   return updatedProduct;
 };
 
-module.exports = { getAll, getById, create, update };
+const remove = async (id) => {
+  await validateId(id);
+  await ProductModel.remove(id);
+};
+
+module.exports = { getAll, getById, create, update, remove };
