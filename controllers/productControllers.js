@@ -7,6 +7,13 @@ const getAll = async (_req, res, _next) => {
   res.status(httpsStatusCode.OK).json(products);
 };
 
+const getBySearch = async (req, res, _next) => {
+  const { q } = req.query;
+  const filteredProducts = await ProductService.getBySearch(q);
+
+  res.status(httpsStatusCode.OK).json(filteredProducts);
+};
+
 const getById = async (req, res, _next) => {
   const { id } = req.params;
   const product = await ProductService.getById(id);
@@ -36,4 +43,4 @@ const remove = async (req, res, _next) => {
   res.status(httpsStatusCode.NO_CONTENT).end();
 };
 
-module.exports = { getAll, getById, create, update, remove };
+module.exports = { getAll, getById, create, update, remove, getBySearch };
