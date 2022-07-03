@@ -15,10 +15,19 @@ const getById = async (req, res, _next) => {
 };
 
 const create = async (req, res, _next) => {
-  const products = req.body;
-  const newSale = await SaleService.create(products);
+  const sales = req.body;
+  const newSale = await SaleService.create(sales);
    
   res.status(httpsStatusCode.CREATED).json(newSale);
+};
+
+const update = async (req, res, _next) => {
+  const { id } = req.params;
+  const sales = req.body;
+  const salesId = sales.map((s) => Object.assign(s, { saleId: +id }));
+  const updatedSales = await SaleService.update(salesId);
+
+  res.status(httpsStatusCode.OK).json(updatedSales);
 };
 
 const remove = async (req, res, _next) => {
@@ -28,4 +37,4 @@ const remove = async (req, res, _next) => {
   res.status(httpsStatusCode.NO_CONTENT).end();
 };
 
-module.exports = { create, getAll, getById, remove };
+module.exports = { create, getAll, getById, remove, update };
