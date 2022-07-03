@@ -6,6 +6,11 @@ const getAll = async () => {
   return products;
 };
 
+const getBySearch = async (q) => {
+  const filteredProducts = await ProductModel.getBySearch(q);
+  return filteredProducts;
+};
+
 const getById = async (id) => {
   await validateId(id);
 
@@ -33,4 +38,4 @@ const remove = async (id) => {
   await ProductModel.remove(id);
 };
 
-module.exports = { getAll, getById, create, update, remove };
+module.exports = { getAll, getById, create, update, remove, getBySearch };
