@@ -11,7 +11,7 @@ describe('( model layer - product)', () => {
     describe('when all products are returned', () => {
       before(async () => {
         const query = [mockProductsGetAll];
-        sinon.stub(connection, "execute").resolves(query);
+        sinon.stub(connection, 'execute').resolves(query);
       });
 
       after(async () => {
@@ -34,7 +34,33 @@ describe('( model layer - product)', () => {
       });
     });
   });
+  describe('#method getBySearch', () => {
+    describe('when all products that have the query included are returned', () => {
+      const q = 'Martelo';
 
+      before(async () => {
+        const query = [mockProductsGetAll];
+        sinon.stub(connection, 'execute').resolves(query);
+      });
+
+      after(async () => {
+        connection.execute.restore();
+      });
+
+      it('tests if the return is an object', async () => {
+        const response = await ProductModel.getBySearch('martelo');
+        expect(response[0]).to.be.a('object');
+      });
+
+      it('tests if a product is returned that contains the passed query', async () => {
+        const response = await ProductModel.getBySearch(q);
+        const { name } = response[0];
+
+        expect(name).to.include(q);
+      });
+    });
+  });
+  
   describe('#method getById', () => {
     describe('when only products by id are returned', () => {
       before(async () => {

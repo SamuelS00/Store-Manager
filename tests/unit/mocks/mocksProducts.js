@@ -20,4 +20,15 @@ const mockProductGetById = [
   },
 ];
 
-module.exports = { mockProductsGetAll, mockProductGetById };
+const mockProductGetBySearch = [
+  {
+    id: 1,
+    name: "Martelo de Thor",
+  },
+];
+
+module.exports = {
+  mockProductsGetAll,
+  mockProductGetById,
+  mockProductGetBySearch,
+};
