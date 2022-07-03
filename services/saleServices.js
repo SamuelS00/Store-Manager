@@ -20,10 +20,18 @@ const create = async (sales) => {
   return newSales;
 };
 
+const update = async (sales) => {
+  await Promise.all(sales.map((s) => validateSale(s)));
+  await Promise.all(sales.map((s) => validateSaleId(s.saleId)));
+
+  const updatedSales = await SaleModels.update(sales);
+  return updatedSales;
+};
+
 const remove = async (id) => {
   await validateSaleId(id);
 
   await SaleModels.remove(id);
 };
 
-module.exports = { create, getAll, getById, remove };
+module.exports = { create, getAll, getById, remove, update };
