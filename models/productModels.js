@@ -7,6 +7,17 @@ const getAll = async () => {
   return products;
 };
 
+const getBySearch = async (q) => {
+  const query = 'SELECT * FROM StoreManager.products';
+  const [products] = await connection.execute(query);
+
+  const filteredProducts = (
+    products.filter((p) => p.name.toLowerCase().includes(q.toLowerCase()))
+  );
+  
+  return filteredProducts;
+};
+
 const getById = async (id) => {
   const query = 'SELECT * FROM StoreManager.products WHERE id = ?';
   const [product] = await connection.execute(query, [id]);
@@ -43,4 +54,4 @@ const remove = async (id) => {
   await connection.execute(query, [id]);
 };
 
-module.exports = { getAll, getById, create, update, remove };
+module.exports = { getAll, getById, create, update, remove, getBySearch };
