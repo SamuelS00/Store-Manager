@@ -4,7 +4,7 @@ const { expect } = require('chai');
 const ProductServices = require('../../../services/productServices');
 const ProductModels = require('../../../models/productModels');
 
-const { mockProductsGetAll, mockProductGetById } = require('../mocks/mocksProducts');
+const { mockProductsGetAll, mockProductGetById, mockProductGetBySearch } = require('../mocks/mocksProducts');
 
 describe('( service layer - product)', () => {
   describe('#method getAll', () => {
@@ -31,6 +31,33 @@ describe('( service layer - product)', () => {
       it('tests if o return has the id of the inserted product', async () => {
         const response = await ProductServices.getAll();
         expect(response[0]).to.be.a.property('id');
+      });
+    });
+  });
+
+  describe.only('#method getBySearch', () => {
+    describe('when all products are returned', () => {
+      const q = 'Martelo';
+
+      before(async () => {
+        const query = mockProductGetBySearch ;
+        sinon.stub(ProductModels, 'getBySearch').resolves(query);
+      });
+
+      after(async () => {
+        ProductModels.getBySearch.restore();
+      });
+
+      it('tests if the return is an object', async () => {
+        const response = await ProductServices.getBySearch(q);
+        expect(response[0]).to.be.a('object');
+      });
+
+      it('tests if a product is returned that contains the passed query', async () => {
+        const response = await ProductServices.getBySearch(q);
+        const { name } = response[0];
+
+        expect(name).to.include(q);
       });
     });
   });

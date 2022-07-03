@@ -48,7 +48,7 @@ describe('( model layer - product)', () => {
       });
 
       it('tests if the return is an object', async () => {
-        const response = await ProductModel.getBySearch('martelo');
+        const response = await ProductModel.getBySearch(q);
         expect(response[0]).to.be.a('object');
       });
 
@@ -60,7 +60,7 @@ describe('( model layer - product)', () => {
       });
     });
   });
-  
+
   describe('#method getById', () => {
     describe('when only products by id are returned', () => {
       before(async () => {
