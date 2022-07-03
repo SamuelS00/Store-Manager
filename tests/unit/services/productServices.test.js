@@ -35,15 +35,14 @@ describe('( service layer - product)', () => {
     });
   });
 
-  describe.only('#method getBySearch', () => {
-    describe('when all products are returned', () => {
+  describe('#method getBySearch', () => {
+    describe('when all products that have the query included are returned', () => {
       const q = 'Martelo';
 
       before(async () => {
-        const query = mockProductGetBySearch ;
+        const query = mockProductGetBySearch;
         sinon.stub(ProductModels, 'getBySearch').resolves(query);
       });
-
       after(async () => {
         ProductModels.getBySearch.restore();
       });
