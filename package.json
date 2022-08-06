@@ -2,7 +2,7 @@
   "name": "sd-0x-store-manager",
   "version": "1.0.0",
   "description": "Simple CRUD to sales and products",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=7.0.0"
@@ -10,8 +10,8 @@
   "scripts": {
     "test": "jest --config ./jest.config.js --runInBand --detectOpenHandles",
     "test:mocha": "nyc --all --include models --include services --include controllers mocha tests/unit/**/*.js --exit",
-    "start": "node index.js",
-    "debug": "nodemon --ignore coverage index.js",
+    "start": "node src/api/server.js",
+    "debug": "nodemon --ignore coverage src/api/server.js",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx",
     "migration": "node -e \"require('./__tests__/_utils').runMigration()\"",
     "seed": "node -e \"require('./__tests__/_utils').runSeed()\""
