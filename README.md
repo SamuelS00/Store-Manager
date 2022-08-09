@@ -51,9 +51,19 @@ MYSQL_DATABASE=store_manager
 PORT=3000
 ```
 
+### Docker
+
+* *Before you start, your docker-compose needs to be at version 1.29 or higher. See here or in the documentation how to install it. In the first article, you can replace where you are with 1.26.0 with 1.29.2.*
+
+* *to run the application containers use the command below:*
+
+```
+docker exec -it store_manager bash
+```
+
 ### Usage
 
-* to run the application use the command below:
+* *to run the application use the command below:*
 
 ```npm
 npm start
@@ -65,22 +75,8 @@ or
 yarn test
 ```
 
-* to run all tests use the command below:
+* *to run all tests use the command below:*
 
 ```
 npm test
-```
-
-### Docker
-
-* to run the application containers use the command below:
-
-```
-docker exec -it store_manager bash
-```
-
-* install the dependencies and run the application:
-
-```
-npm install && npm start
 ```
