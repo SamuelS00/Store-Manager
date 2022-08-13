@@ -6,7 +6,7 @@
 
 Express API developed using MSC (model-service-controller) architecture and implementing unit tests.
 
-The API to be built is a sales management system in dropshipping format in which it will be possible to create, view, delete and update products and sales. using MySQL database for data management.
+The API to be built is a sales management system in dropshipping format in which it will be possible to create, view, delete and update products and sales, using MySQL database for data management.
 
 ## Technologies Used
 
@@ -29,7 +29,7 @@ The API to be built is a sales management system in dropshipping format in which
 git@github.com:SamuelS00/Store-Manager.git
 ```
 
-* *After cloning the respository, install the dependencies:*
+* *After cloning the repository, install the dependencies:*
 
 ```
 yarn install
@@ -41,7 +41,7 @@ yarn install
 npm install
 ```
 
-* *Then proceed with the creation of your .Env file to store your environment variables, this were the ones that i used:*
+* *Then proceed with the creation of your .Env file to store your environment variables, just like:
 
 ```
 MYSQL_HOST=localhost
